@@ -1,3 +1,5 @@
+package cold;
+
 /**
  * Created by cold on 2017/5/17.
  */
@@ -20,7 +22,7 @@ public class Counter{
     }
     @Override
     public String toString() {
-        return "Counter{" +
+        return "cold.Counter{" +
                 "id='" + id + '\'' +
                 ", count=" + count +
                 '}';

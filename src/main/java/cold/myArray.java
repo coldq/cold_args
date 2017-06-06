@@ -1,3 +1,5 @@
+package cold;
+
 import java.util.Arrays;
 
 /**
@@ -10,6 +12,11 @@ public class myArray {
         this.arr = arr;
     }
 
+    private void swap(int a, int b){
+        int tmp = this.arr[a];
+        this.arr[a] = this.arr[b];
+        this.arr[b]= tmp;
+    }
     /**
      * 直接插入排序
      * O(n^2）
@@ -95,16 +102,14 @@ public class myArray {
         for (int i = n-1;i > 0; i--){
             for(int j = 0; j < i; j++){
                 if(a[j] > a[j+1]){
-                    int tmp = a[j];
-                    a[j] = a[j+1];
-                    a[j+1] = tmp;
+                   swap(j,j+1);
                 }
             }
         }
     }
 
     /**
-     *冒泡改进
+     * 冒泡改进 - 最后的交换位置
      * 设置一标志性变量pos,用于记录每趟排序中最后一次进行交换的位置。
      * 由于pos位置之后的记录均已交换到位,故在进行下一趟排序时只要扫描到pos位置即可。
      */
@@ -124,6 +129,32 @@ public class myArray {
             }
             i = pos;
         }
+    }
+
+    /**
+     * 快速排序
+     * 选一个基准，通常是第一个或者最后一个，然后将比它大的排在后面，小的排在前面，即分成2部分
+     * 这样它的位置定了，然后对2部分继续快速排序
+     */
+    private void quickOneSort(int[]a, int low, int high){
+        if(low >= high) return ;
+        int l = low,h = high;
+        int key = a[low];
+        while ( low < high ){
+            while (low < high && a[high] >= key) high--;  //>= ，如果有两个相等的，没= 会死循环
+            a[low] = a[high];
+            while (low < high && a[low] <= key) low++;
+            a[high] = a[low];
+        }
+        a[low] = key;
+        quickOneSort(a,l,low-1);
+        quickOneSort(a,low+1,h);
+
+    }
+    public void quickSort(){
+        int[] a = this.arr;
+        int low = 0 ,high = a.length-1;
+        quickOneSort(a,low,high);
     }
 
     public int[] getArr() {
