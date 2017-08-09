@@ -9,41 +9,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class test {
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int n1 = 0, n2 = 0;
+        while(l1 != null){
+            n1 = n1*10 + l1.val;
+            l1 = l1.next;
+        }
+        while(l2 != null){
+            n2 = n2*10 + l2.val;
+            l2 = l2.next;
+        }
+        int n3 = n1+n2;
+        int cu = n3%10;
+        n3 = n3/10;
+        ListNode res = new ListNode(cu),pre = null;
+
+        while(n3 != 0){
+            cu = n3 % 10;
+            pre = res;
+            res = new ListNode(cu);
+            res.next = pre;
+            n3 = n3/10;
+        }
+        return res;
+    }
     public static void main(String[] args){
-//        int T = Integer.parseInt(args[0]);
-//        int SIDES = 6;
-//        Counter[] rolls = new Counter[SIDES+1];
-//        for(int i = 0; i <= SIDES; i++)
-//            rolls[i] = new Counter(i+"'s");
-//
-//        for(int t = 0; t < T; t++)
-//        {
-//            int result = StdRandom.uniform(1,SIDES+1);
-//
-//            rolls[result].increment();
-//        }
-//        for(int i = 1; i <= SIDES;i++)
-//            StdOut.println(rolls[i]);
-//        int i = 1,j=2,k=3,m=4;
-//        int min = (i < j) ? (k = 4):(m =5);
+        ListNode n1 = new ListNode(3);
+        ListNode n2 = new ListNode(9);
+        ListNode n3 = new ListNode(9);
+        ListNode n4 = new ListNode(9);
+        ListNode n5 = new ListNode(9);
+        ListNode n6 = new ListNode(9);
+        ListNode n7 = new ListNode(9);
+        ListNode n8 = new ListNode(9);
+        ListNode n9 = new ListNode(9);
+        ListNode n10 = new ListNode(9);
+        n1.next = n2;
+        n2.next = n3;n3.next = n4; n4.next = n5;
+        n5.next = n6;n6.next = n7;n7.next = n8;
+        n8.next = n9;n9.next = n10;
 
-//        List<Integer> a = new ArrayList<Integer>();
-//        a.add(null);
-//        a.add(2);
-//        StdOut.println(a.contains(1));
-//
-//        Integer[] b = (Integer[])a.toArray(new Integer[0]);
-//        StdOut.println(b[0]);
-
-        int a = 6,b=7,c=8;
-        StdOut.println(1^2);
-        StdOut.println(2^3);
-        StdOut.println(1^3);
-        StdOut.println(1^4);
-        StdOut.println(2^4);
-        StdOut.println(3^4);
-
-        StdOut.println(1^2^3^4);
+        ListNode m1 = new ListNode(7);
+        ListNode res = addTwoNumbers(n1,m1);
+        while (res != null){
+            StdOut.println(res.val);
+            res = res.next;
+        }
     }
 
 
